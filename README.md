@@ -8,7 +8,7 @@ This is a simple login application built with Laravel and Laravel Sail. It inclu
 
 - **Docker Desktop** installed and running
 - **Composer**
-- **Node.js and npm**
+- **npm**
 
 ## Installation
 
