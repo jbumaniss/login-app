@@ -44,9 +44,9 @@ This is a simple login application built with Laravel and Laravel Sail. It inclu
    
 6. **Generate an application key:**
     
-        ```bash
-        php artisan key:generate
-        ```
+    ```bash
+    ./vendor/bin/sail artisan key:generate
+    ```
 7. **Start the Laravel Sail containers:**
 
     ```bash
@@ -61,14 +61,15 @@ This is a simple login application built with Laravel and Laravel Sail. It inclu
    
 9. **Run the database seeders:**
     
-        ```bash
-        ./vendor/bin/sail artisan db:seed
-        ```
+    ```bash
+    ./vendor/bin/sail artisan db:seed
+    ```
 10. **Build the frontend assets:**
     
-        ```bash
-        npm run dev
-        ```
+    ```bash
+    npm run dev
+    ```
+    
 11. **Visit the application in your browser:**
 
     [http://localhost](http://localhost)
