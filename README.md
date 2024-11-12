@@ -64,3 +64,15 @@ This is a simple login application built with Laravel and Laravel Sail. It inclu
         ```bash
         ./vendor/bin/sail artisan db:seed
         ```
+10. **Build the frontend assets:**
+    
+        ```bash
+        npm run dev
+        ```
+11. **Visit the application in your browser:**
+
+    [http://localhost](http://localhost)
+12. **Use test credentials to login:**
+
+    - **Email:** `testuser@example.com`
+    - **Password:** `password`
