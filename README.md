@@ -15,7 +15,7 @@ This is a simple login application built with Laravel and Laravel Sail. It inclu
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/login-app.git
+   git clone https://github.com/jbumaniss/login-app.git
     ```
    
 2. **Change into the project directory:**
