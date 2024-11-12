@@ -9,11 +9,17 @@ use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
     public function __construct(private readonly AuthService $authService)
     {
+    }
+
+    public function view(): View
+    {
+        return view('login');
     }
 
     public function login(LoginRequest $request): JsonResponse
@@ -51,7 +57,12 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(RegisterRequest $request): JsonResponse
+    public function register(): View
+    {
+        return view('register');
+    }
+
+    public function store(RegisterRequest $request): JsonResponse
     {
         $data = $request->validated();
 
