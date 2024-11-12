@@ -6,7 +6,6 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Services\AuthService;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,13 +68,5 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login');
-    }
-
-    public function rememberMe(Request $request): JsonResponse
-    {
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Remember me functionality is not implemented.'
-        ]);
     }
 }
