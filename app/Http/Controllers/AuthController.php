@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -19,10 +20,10 @@ class AuthController extends Controller
 
     public function view(): View
     {
-        return view('login');
+        return view('Login.login');
     }
 
-    public function login(LoginRequest $request): JsonResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
         $credentials = $request->only('email', 'password');
         $remember = $request->has('remember');
@@ -32,51 +33,42 @@ class AuthController extends Controller
             password: $credentials['password']
         );
 
+
         if ($user) {
             Auth::login($user, $remember);
-
-            return response()->json([
-                'status' => 'ok',
-                'message' => "Hello {$user->name}, you are logged in as {$user->email}."
-            ]);
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
         }
 
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Invalid credentials.'
-        ], 401);
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.'
+        ]);
     }
 
-    public function logout(): JsonResponse
+    public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Logged out successfully.'
-        ]);
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('home');
     }
 
     public function register(): View
     {
-        return view('register');
+        return view('Register.register');
     }
 
-    public function store(RegisterRequest $request): JsonResponse
+    public function store(RegisterRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
-        $user = User::query()->create([
+        User::query()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        return response()->json([
-            'status' => 'ok',
-            'message' => 'Registration successful.',
-            'user' => $user
-        ]);
+        return redirect()->route('login');
     }
 
     public function rememberMe(Request $request): JsonResponse
