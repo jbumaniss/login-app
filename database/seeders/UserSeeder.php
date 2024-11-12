@@ -13,9 +13,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::query()->create([
+        User::query()->updateOrCreate([
             'name'     => 'TestUser',
             'email'    => 'testuser@example.com',
+        ],[
             'password' => bcrypt('password'),
         ]);
     }
