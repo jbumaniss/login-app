@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.app')
 
 @section('content')
     <div class="min-h-screen bg-gray-100">
@@ -47,4 +47,19 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.getElementById('user-menu-button').addEventListener('click', function() {
+            const userMenu = document.getElementById('user-menu');
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(event) {
+            const userMenu = document.getElementById('user-menu');
+            const button = document.getElementById('user-menu-button');
+            if (!button.contains(event.target) && !userMenu.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
 @endsection
